@@ -1,0 +1,19 @@
+﻿@model Data.Result
+
+<span style="width: 200px; display: inline-block;text-align: right">
+    Wynik
+    @Html.DisplayFor(model => model.HomeGoals):@Html.DisplayFor(model => model.AwayGoals)
+    (@Html.DisplayFor(model => model.HomeGoalsInFirstHalf):@Html.DisplayFor(model => model.AwayGoalsInFirstHalf))
+    @if (Model.HasExtraTime)
+    {
+        @Html.Raw("z dogrywką")
+        @*@Html.DisplayFor(model => model.HomeGoalsInExtraTime.Value)  @Html.Label(":")  @Html.DisplayFor(model => model.AwayGoalsInExtraTime.Value)*@
+    }
+    @if (Model.HasPenatly)
+    {
+        @Html.Raw("z karnymi")
+        @*@Html.DisplayFor(model => model.HomePenatly.Value)  @Html.Label(":")  @Html.DisplayFor(model => model.AwayPenatly.Value)*@
+    }
+
+
+</span>

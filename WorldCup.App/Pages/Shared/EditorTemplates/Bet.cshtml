@@ -1,0 +1,22 @@
+﻿@model Data.Bet
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div style="width: 150px;">
+    Wynik do meczu: @Html.EditorFor(model => model.HomeGoals):@Html.EditorFor(model => model.AwayGoals)
+
+</div>
+
+<div style="width: 150px;">
+    Wynik do przerwy: (@Html.EditorFor(model => model.HomeGoalsInFirstHalf):@Html.EditorFor(model => model.AwayGoalsInFirstHalf))
+</div>
+@Html.EditorFor(model => model.HasExtraTime)
+
+<div style="width: 150px;">
+    Wynik dogrywki: @Html.EditorFor(model => model.HomeGoalsInExtraTime):@Html.EditorFor(model => model.AwayGoalsInExtraTime)
+</div>
+@Html.EditorFor(model => model.HasPenatly)
+<div  style="width: 150px;">
+    Wynik karnych: @Html.EditorFor(model => model.HomePenatly) : @Html.DisplayFor(model => model.AwayPenatly)
+</div>

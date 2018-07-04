@@ -1,0 +1,24 @@
+﻿@model Data.Bet
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<span style="width: 300px; display: inline-block;text-align: right">
+    Twój typ
+    @Html.DisplayFor(model => model.HomeGoals):@Html.DisplayFor(model => model.AwayGoals)
+    (@Html.DisplayFor(model => model.HomeGoalsInFirstHalf):@Html.DisplayFor(model => model.AwayGoalsInFirstHalf))
+    @if (Model.HasExtraTime)
+    {
+        @Html.Raw("z dogrywką ")
+        @*@Html.DisplayFor(model => model.HomeGoalsInExtraTime.Value) @Html.Label(":") @Html.DisplayFor(model => model.AwayGoalsInExtraTime.Value)*@
+    }
+    @if (Model.HasPenatly)
+    {
+        @Html.Raw("z karnymi ") @*@Html.DisplayFor(model => model.HomePenatly.Value) @Html.Label(":") @Html.DisplayFor(model => model.AwayPenatly.Value)*@
+    }
+    
+    @if (Model.Result != null)
+    {
+        @Html.Raw("Liczba zdobytych punktów: ") @Html.DisplayFor(c=>c.Result.AddedPoints)
+    }
+</span>

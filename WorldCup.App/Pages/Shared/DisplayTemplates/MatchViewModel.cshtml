@@ -1,0 +1,62 @@
+﻿@model ViewModel.MatchViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<div>
+    <span style="width: 150px; display: inline-block;font-weight: 700">@Html.Raw(Model.Date.ToString("G"))</span>
+    <span style="width: 200px;display: inline-block">@Html.DisplayFor(model => model.HomeTeamName) - @Html.DisplayFor(model => model.AwayTeamName)</span>
+    @if (Model.Result != null)
+    {
+        @Html.DisplayFor(c => c.Result)
+    }
+    else
+    {
+        <span style="width: 150px"> (-) : (-)</span>
+    }
+    @if (Model.BetForUser != null)
+    {
+        <span style="width: 250px">@Html.DisplayFor(model => model.BetForUser)</span>
+    }
+    @if (Model.Date.AddMinutes(-1) > DateTime.Now && Model.Result == null)
+    {
+        if (Model.BetForUser == null)
+        {
+            <span style="width: 150px">
+                <a asp-page="../Matches/Bet" asp-route-matchId="@Model.Id">Wytypuj</a>
+            </span>
+        }
+        else
+        {
+            <span style="width: 150px">
+                <a asp-page="../Bets/Edit" asp-route-id="@Model.BetForUser.Id">Edytuj typ</a>
+            </span>
+        }
+
+
+    }
+    else
+    {
+
+        if (Model.Result == null && User.HasClaim(c => c.Value == "f110a9b0-4f25-4c0a-84d6-1f2954eedd58"))
+        {
+            <a asp-page="../Matches/AddResult" asp-route-matchId="@Model.Id">Uzupełnij wynik typ</a>
+            <span style="width: 150px">
+                <a asp-page="../Matches/BetFor" asp-route-matchId="@Model.Id">Wytypuj za osobę</a>
+            </span>
+        }
+        if (Model.Date.AddMinutes(1) < DateTime.Now)
+        {
+
+            <button id ="@("showBets_"+Model.Id)" class="btn btn-primary" worldcupapp-match-id="@Model.Id" >Pokaż/Ukryj wszystkie typy</button>
+            <div id="@("bets_"+Model.Id)">
+                @foreach (var item in Model.Bets)
+                {
+                    @Html.DisplayFor(model=>item)
+                }
+            </div>
+        }
+    }
+</div>
+

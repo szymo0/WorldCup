@@ -1,0 +1,45 @@
+﻿@page
+@model WorldCup.App.Pages.TeamsModel
+
+@{
+    ViewData["Title"] = "Drużyny występujące w WORD CUP - RUSSIA 2018";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Teams</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].ShortName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].TimeStamp)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Team) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStamp)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id">Szczegóły </a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

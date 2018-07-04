@@ -1,0 +1,30 @@
+﻿@model ViewModel.BetViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div style="padding-left: 20px">
+    @Html.DisplayFor(model=>model.UserName) wytypował:
+    @Html.DisplayFor(model => model.Bet.HomeGoals):@Html.DisplayFor(model => model.Bet.AwayGoals)
+    (@Html.DisplayFor(model => model.Bet.HomeGoalsInFirstHalf):@Html.DisplayFor(model => model.Bet.AwayGoalsInFirstHalf))
+    @if (Model.Bet.HasExtraTime)
+    {
+        @Html.Raw(" z dogrywką")
+        @*@Html.DisplayFor(model => model.Bet.HomeGoalsInExtraTime.Value)
+        @Html.Label(":")
+        @Html.DisplayFor(model => model.Bet.AwayGoalsInExtraTime.Value)*@
+    }
+    @if (Model.Bet.HasPenatly)
+    {
+        @Html.Raw(" z karnymi")
+        @*@Html.DisplayFor(model => model.Bet.HomePenatly.Value)
+        @Html.Label(":")
+        @Html.DisplayFor(model => model.Bet.AwayPenatly.Value)*@
+    }
+
+    @if (Model.Bet.Result != null)
+    {
+        @Html.Raw("Liczba zdobytych punktów: ")
+        @Html.DisplayFor(c => c.Bet.Result.AddedPoints)
+    }
+</div>

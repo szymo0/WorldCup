@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Sender\Configuration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.7.1" />
+  </ItemGroup>
+
+</Project>

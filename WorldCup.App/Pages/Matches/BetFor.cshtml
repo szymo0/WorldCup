@@ -1,0 +1,99 @@
+﻿@page
+@model WorldCup.App.Pages.Matches.BetForModel
+
+@{
+    ViewData["Title"] = Model.Bet.Title;
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.Raw(Model.Bet.Desciption)</h2>
+
+<h4>Typ</h4>
+<hr />
+<div class="row">
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label class="control-label">Wynik meczu po 90min:</label><br />
+            @Html.DisplayFor(model => model.Bet.HomeTeamName)
+            <input asp-for="Bet.HomeGoals" class="form-control" style="width: 50px;display: inline-block" />
+            <span asp-validation-for="Bet.HomeGoals" class="text-danger"></span>
+            :
+            <input asp-for="Bet.AwayGoals" class="form-control" style="width: 50px; display: inline-block" />
+            <span asp-validation-for="Bet.AwayGoals" class="text-danger"></span>
+            @Html.DisplayFor(model => model.Bet.AwayTeamName)
+
+        </div>
+        <div>
+            <label class="control-label">Wynik meczu po 45 minutach :</label><br />
+            @Html.DisplayFor(model => model.Bet.HomeTeamName)
+            <input asp-for="Bet.HomeGoalsInFirstHalf" class="form-control" style="width: 50px; display: inline-block" />
+            <span asp-validation-for="Bet.HomeGoalsInFirstHalf" class="text-danger"></span>
+            : 
+            <input asp-for="Bet.AwayGoalsInFirstHalf" class="form-control" style="width: 50px; display: inline-block" />
+            <span asp-validation-for="Bet.AwayGoalsInFirstHalf" class="text-danger"></span>
+            @Html.DisplayFor(model => model.Bet.AwayTeamName)
+        </div>
+        <div class="form-group">
+            <label class="control-label">Dogrywka</label>
+            <div class="checkbox">
+                <label>
+                    <input asp-for="Bet.HasExtraTime" /> @Html.DisplayNameFor(model => model.Bet.HasExtraTime)
+                </label>
+            </div>
+            @*<div id="extraTime">
+                @Html.DisplayFor(model => model.Bet.HomeTeamName)
+                <input asp-for="Bet.HomeGoalsInExtraTime" class="form-control" style="width: 50px;display: inline-block" />
+                <span asp-validation-for="Bet.HomeGoalsInExtraTime" class="text-danger"></span> :
+                <input asp-for="Bet.AwayGoalsInExtraTime" class="form-control" style="width: 50px;display: inline-block" />
+                <span asp-validation-for="Bet.AwayGoalsInExtraTime" class="text-danger"></span>
+                @Html.DisplayFor(model => model.Bet.AwayTeamName)
+            </div>*@
+        </div>
+        <div class="form-group">
+            <label class="control-label">Karne</label>
+            <div class="checkbox">
+                <label>
+                    <input asp-for="Bet.HasPenatly" /> @Html.DisplayNameFor(model => model.Bet.HasPenatly)
+                </label>
+            </div>
+            @*<div id="penatly">
+                @Html.DisplayFor(model => model.Bet.HomeTeamName)
+                <input asp-for="Bet.HomePenatly" class="form-control" style="width: 50px;display: inline-block" />
+                <span asp-validation-for="Bet.HomePenatly" class="text-danger"></span> :
+                <input asp-for="Bet.AwayPenatly" class="form-control" style="width: 50px;display: inline-block" />
+                <span asp-validation-for="Bet.AwayPenatly" class="text-danger"></span>
+                @Html.DisplayFor(model => model.Bet.AwayTeamName)
+            </div>*@
+        </div>
+        <input asp-for="Bet.MatchId" />
+        @*<input asp-for="Bet.UserId" />*@
+        @Html.DropDownListFor(model=>model.Bet.UserId,new SelectList(Model.Users,"Id", "DisplayName"))
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </form>
+
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @*<script type="text/javascript">
+        $(document).ready(function(){
+            $("#penatly").hide();
+            $("#extraTime").hide();
+            $("#Bet_HasExtraTime").click(function() {
+                $("#extraTime").toggle();
+            });
+            $("#Bet_HasPenatly").click(function() {
+                $("#penatly").toggle();
+            });
+        })
+    </script>*@
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

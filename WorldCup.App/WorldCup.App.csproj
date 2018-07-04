@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-WorldCup.App-8B815FF0-E98E-4C80-9F29-6C2822B20AA9</UserSecretsId>
+    <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="2.1.0-rc1-final" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0-rc1-final" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Pages\Matches\BetFor.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\EditorTemplates\Bet.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+
+</Project>

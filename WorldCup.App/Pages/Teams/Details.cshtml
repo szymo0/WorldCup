@@ -1,0 +1,45 @@
+﻿@page
+@model WorldCup.App.Pages.Teams.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Team</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Team.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Team.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Team.ShortName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Team.ShortName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Team.TimeStamp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Team.TimeStamp)
+        </dd>
+    </dl>
+</div>
+<div>
+
+            @foreach (var item in Model.Matches)
+            {
+                @Html.DisplayFor(m=>item)
+            }
+
+</div>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

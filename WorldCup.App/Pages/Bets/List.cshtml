@@ -1,0 +1,22 @@
+﻿@page
+@model WorldCup.App.Pages.Bets.ListModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<table>
+    <thead>
+    <th>Osoba</th>
+    <th>Typ</th>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Bets.Bets)
+    {
+        <tr>
+            <td>@Html.Raw(item.UserName)</td>
+            <td>@Html.DisplayFor(c=>item.Bet, "BetForUser")</td>
+        </tr>
+    }
+    </tbody>
+</table>

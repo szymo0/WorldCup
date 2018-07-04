@@ -1,0 +1,51 @@
+﻿@page
+@model WorldCup.App.Pages.DashboardModel
+@{
+    ViewData["Title"] = "Twój Dashboard";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 style="color:red;font-weight:700"><a asp-page="/About">15.06.2018 - UWAGA NOWY REGULAMIN</a></h1>
+
+<h2>Tabela</h2>
+<table>
+    <thead>
+    <th style="width: 50px;text-align: left">Miejsce</th>
+    <th style="width: 250px;text-align: center">Gracz</th>
+    <th style="width: 50px;text-align: left">Liczba punktów</th>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Users.Count; i++)
+        {
+            <tr>
+                <td>@Html.Raw(i + 1)</td>
+                <td>@Html.Raw(Model.Users[i].DisplayName)</td>
+                <td>@Html.Raw(Model.Users[i].Points.ToString())</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.MatchesPlaying.Any())
+{
+
+    <h2>Mecze obecnie rozgrywane:</h2>
+    @foreach (var match in Model.MatchesPlaying)
+    {
+        @Html.DisplayFor(model => match)
+    }
+}
+
+<h2>Mecze do rozegrania:</h2>
+@foreach (var match in Model.MatchesToPlay)
+{
+    @Html.DisplayFor(model => match)
+}
+
+<h2>Mecze rozegrane:</h2>
+@foreach (var match in Model.MatchesPlayed)
+{
+    @Html.DisplayFor(model => match)
+}
+
+

@@ -1,0 +1,103 @@
+﻿@page
+@model WorldCup.App.Pages.Bets.EditModel
+
+@{
+    ViewData["Title"] = Model.EditBetViewModel.Title;
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(c => c.EditBetViewModel.Title)</h2>
+
+<h4>@Html.DisplayFor(c => c.EditBetViewModel.Desciption)</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div>
+                <input asp-for="EditBetViewModel.UserId" class="form-control" />
+                <input asp-for="EditBetViewModel.MatchId" class="form-control" />
+                <input asp-for="EditBetViewModel.BetId" class="form-control" />
+                <input asp-for="EditBetViewModel.Id" class="form-control" />
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Wynik meczu po 90min:</label><br/>
+                @Html.DisplayFor(model => model.EditBetViewModel.HomeTeamName)
+                <input asp-for="EditBetViewModel.HomeGoals" class="form-control" style="width: 50px; display: inline-block"/>
+                <span asp-validation-for="EditBetViewModel.HomeGoals" class="text-danger"></span>
+                :
+                <input asp-for="EditBetViewModel.AwayGoals" class="form-control" style="width: 50px; display: inline-block"/>
+                <span asp-validation-for="EditBetViewModel.AwayGoals" class="text-danger"></span>
+                @Html.DisplayFor(model => model.EditBetViewModel.AwayTeamName)
+
+            </div>
+            <div>
+                <label class="control-label">Wynik meczu po 45 minutach :</label><br/>
+                @Html.DisplayFor(model => model.EditBetViewModel.HomeTeamName)
+                <input asp-for="EditBetViewModel.HomeGoalsInFirstHalf" class="form-control" style="width: 50px; display: inline-block"/>
+                <span asp-validation-for="EditBetViewModel.HomeGoalsInFirstHalf" class="text-danger"></span>
+                :
+                <input asp-for="EditBetViewModel.AwayGoalsInFirstHalf" class="form-control" style="width: 50px; display: inline-block"/>
+                <span asp-validation-for="EditBetViewModel.AwayGoalsInFirstHalf" class="text-danger"></span>
+                @Html.DisplayFor(model => model.EditBetViewModel.AwayTeamName)
+            </div>
+            <div class="form-group">
+                <label class="control-label">Dogrywka</label>
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="EditBetViewModel.HasExtraTime"/> @Html.DisplayNameFor(model => model.EditBetViewModel.HasExtraTime)
+                    </label>
+                </div>
+                @*<div id="extraTime">
+                    @Html.DisplayFor(model => model.EditBetViewModel.HomeTeamName)
+                    <input asp-for="EditBetViewModel.HomeGoalsInExtraTime" class="form-control" style="width: 50px; display: inline-block"/>
+                    <span asp-validation-for="EditBetViewModel.HomeGoalsInExtraTime" class="text-danger"></span> :
+                    <input asp-for="EditBetViewModel.AwayGoalsInExtraTime" class="form-control" style="width: 50px; display: inline-block"/>
+                    <span asp-validation-for="EditBetViewModel.AwayGoalsInExtraTime" class="text-danger"></span>
+                    @Html.DisplayFor(model => model.EditBetViewModel.AwayTeamName)
+                </div>*@
+            </div>
+            <div class="form-group">
+                <label class="control-label">Karne</label>
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="EditBetViewModel.HasPenatly"/> @Html.DisplayNameFor(model => model.EditBetViewModel.HasPenatly)
+                    </label>
+                </div>
+                @*<div id="penatly">
+                    @Html.DisplayFor(model => model.EditBetViewModel.HomeTeamName)
+                    <input asp-for="EditBetViewModel.HomePenatly" class="form-control" style="width: 50px; display: inline-block"/>
+                    <span asp-validation-for="EditBetViewModel.HomePenatly" class="text-danger"></span> :
+                    <input asp-for="EditBetViewModel.AwayPenatly" class="form-control" style="width: 50px; display: inline-block"/>
+                    <span asp-validation-for="EditBetViewModel.AwayPenatly" class="text-danger"></span>
+                    @Html.DisplayFor(model => model.EditBetViewModel.AwayTeamName)
+                </div>*@
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @*<script type="text/javascript">
+        $(document).ready(function() {
+            $("#penatly").hide();
+            $("#extraTime").hide();
+            $("#Bet_HasExtraTime").click(function() {
+                $("#extraTime").toggle();
+            });
+            $("#Bet_HasPenatly").click(function() {
+                $("#penatly").toggle();
+            });
+        })
+    </script>*@
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
