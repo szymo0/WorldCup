@@ -6,7 +6,12 @@
 }
 
 <h1 style="color:red;font-weight:700"><a asp-page="/About">15.06.2018 - UWAGA NOWY REGULAMIN</a></h1>
-
+<div>
+    @if (User.HasClaim(c => c.Value == "f110a9b0-4f25-4c0a-84d6-1f2954eedd58"))
+    {
+        <a asp-page="../Matches/Add" >Dodaj mecz</a>
+    }
+</div>
 <h2>Tabela</h2>
 <table>
     <thead>
@@ -30,7 +35,7 @@
 {
 
     <h2>Mecze obecnie rozgrywane:</h2>
-    @foreach (var match in Model.MatchesPlaying)
+    foreach (var match in Model.MatchesPlaying)
     {
         @Html.DisplayFor(model => match)
     }

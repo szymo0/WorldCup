@@ -1,0 +1,18 @@
+﻿@page
+@model WorldCup.App.Pages.Matches.AddModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h2>Dodaj mecz</h2>
+<div class="row">
+
+    <form method="post">
+        <span>Drużyna 1</span>@Html.DropDownListFor(model => model.HomeTeamId, new SelectList(Model.Teams,"Id","Name"))
+        <span>Drużyna 2</span>@Html.DropDownListFor(model => model.AwayTeamId, new SelectList(Model.Teams, "Id", "Name"))
+        <span>Data</span>@Html.EditorFor(model => model.Date)
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </form>
+</div>
